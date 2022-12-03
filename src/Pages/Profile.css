@@ -1,0 +1,10 @@
+
+.profileContainer{
+    position: absolute;
+    top: 60px;
+    display: flex;
+    justify-content: center;
+}
+.profileTest{
+    color: white;
+}

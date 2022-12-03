@@ -1,0 +1,59 @@
+.home-container{
+position: absolute;
+top: 70px;
+align-self: center;
+height: 95%;
+width: 100vw;
+background-color: #15202B;
+flex-direction: column;
+display: flex;    
+align-items: center;
+}
+/* +++++form+++++ */
+.create-tweet{
+    position: relative;
+    margin: auto;
+    width: 600px;
+    height: 180px;
+    border: 3px solid black;
+    padding: 10px;
+    margin: 5px;
+}
+.tweet-form{
+
+}
+
+.tweet-textarea{
+width: 564px;
+height: 163px;
+padding: 12px 20px;
+box-sizing: border-box;
+border-radius: 4px;
+resize: none;
+background-color: #15202B;
+color: #CCCCCC;
+border: none;
+}
+.tweet-button{
+background-color:#007BFF;
+position:absolute;
+height: 34px;
+width: 68px;
+right:10px;
+bottom: 20px;
+color: #ffffff;
+}
+
+/* +++++List+++++ */
+.tweet-list{
+background-color: #15202B;
+display: flex;
+flex-direction:column-reverse;
+
+}
+.tweetCapError{
+    color: #721C24;
+    background-color: #F5C6CB;
+    
+}
+

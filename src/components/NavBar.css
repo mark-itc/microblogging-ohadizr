@@ -1,0 +1,19 @@
+.NavBarContainer{
+    position: fixed;
+    display: flex;
+    justify-content:left;
+    width: 80%;
+    left: 10%;
+    height: 58px;
+    z-index: 1;
+    background-color: #343A40;
+
+
+
+}
+.navButton{
+color: #FFFFFF ;
+background-color: transparent;
+padding-left: 5%;
+
+}

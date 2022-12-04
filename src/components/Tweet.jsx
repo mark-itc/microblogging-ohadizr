@@ -1,3 +1,4 @@
+import React from 'react';
 import '../components/Tweet.css'
 
 function TweetCard(props) {

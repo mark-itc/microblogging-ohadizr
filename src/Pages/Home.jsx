@@ -1,3 +1,4 @@
+import React from 'react';
 import "../Pages/Home.css";
 import { useState, useEffect, useContext } from "react";
 import { getCurrentTime } from "../globalFunctions/timeFuncs";

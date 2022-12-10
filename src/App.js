@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
 import { Routes, Route, useParams, Link } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Profile from "./Pages/Profile.jsx";
-import Home from './Pages/Home.jsx'
+import NavBar from './componenets/NavBar'
+import Profile from './Pages/Profile'
+import Home from './Pages/Home'
 
 function App() {
   return (

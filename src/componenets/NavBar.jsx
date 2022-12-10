@@ -1,5 +1,5 @@
-import React from 'react';
-import "../components/NavBar.css";
+import React from "react";
+import '../componenets/NavBar.css'
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {

@@ -1,9 +1,8 @@
-import React from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-import { apiGetData } from "./globalFunctions/api";
-
+// import { apiGetData } from "../Test_React_Firebase/src/globalFunctions/api";
+import {apiGetData} from './globalFunctions/api'
 const Context = createContext();
 
 function TweetContextProvider({ children }) {

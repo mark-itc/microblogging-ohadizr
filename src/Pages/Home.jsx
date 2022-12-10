@@ -1,10 +1,10 @@
-import React from 'react';
-import "../Pages/Home.css";
+import '../Pages/Home.css'
 import { useState, useEffect, useContext } from "react";
 import { getCurrentTime } from "../globalFunctions/timeFuncs";
-import TweetCard from "../components/Tweet";
+import TweetCard from '../componenets/Tweet'
 import { PostDataToApi } from "../globalFunctions/PostDataToApi";
 import { Context } from "../Context";
+
 function Home() {
   const { globalUser, setGlobalUser, globalTweetList, setGlobalTweetList } =
     useContext(Context);

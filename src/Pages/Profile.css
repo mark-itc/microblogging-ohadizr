@@ -1,10 +1,55 @@
-
-.profileContainer{
-    position: absolute;
-    top: 60px;
-    display: flex;
-    justify-content: center;
+.profileContainer {
+  position: absolute;
+  top: 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 35%;
+  left: 30%;
+  right: 35%;
+  padding: 5px;
+  height: 14em;
 }
-.profileTest{
-    color: white;
+.profileTitle{
+    color: #FFFFFF;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+.titleDetails{
+    color: #FFFFFF;
+    margin: 5% 0 5% 0;
+}
+/* .user-pick-form{
+    background-color: transparent;
+} */
+#user {
+  width: 95%;
+  height: 3em;
+  color: #FFFFFF;
+  background-color: transparent;
+  border-style: none;
+  border: 2px solid #cccccc;
+  bottom: 1em;
+  padding-left: 1em;
+  
+}
+
+.pickAUserButton {
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 5% 0px;
+  border-style: none;
+  position: absolute;
+  right: 1.5em;
+  margin-top:2%;
+  padding: 4px 8px 4px 8px;
+  font-size: .8em;
+}
+.pickAUserButton:hover {
+  background-color: rgb(218, 213, 213);
+  cursor: pointer;
+}
+
+.pickAUserButton:active {
+  background-color: #007bff;
 }

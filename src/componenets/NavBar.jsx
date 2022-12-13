@@ -8,9 +8,10 @@ export default function NavBar() {
   return (
     <>
       <nav className="NavBarContainer">
+      <div className="NavBarLeftSide">
           <button
             onClick={() => {
-              navigate("/Home");
+              navigate("/");
             }}
             className="navButton"
           >
@@ -24,6 +25,27 @@ export default function NavBar() {
           >
             Profile
           </button>
+          </div>
+          <div className="NavBarRightSide">
+          <button
+            onClick={() => {
+              navigate("/SignUp");
+            }}
+            className="navButton"
+          >
+            SignUp
+          </button>
+          <button
+            onClick={() => {
+              navigate("/SignIn");
+            }}
+            className="navButton"
+          >
+            SignIn
+          </button>
+
+
+          </div>
       </nav>
     </>
   );

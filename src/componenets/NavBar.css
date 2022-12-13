@@ -1,19 +1,33 @@
 .NavBarContainer{
     position: fixed;
     display: flex;
-    justify-content:left;
     width: 80%;
     left: 10%;
-    height: 58px;
+    height: 3em;
     z-index: 1;
     background-color: #343A40;
-
-
-
+    flex-direction:row;
+    justify-content: space-between;
+}
+.NavBarLeftSide{
+display: flex;
+flex-direction:row;
+margin: 0 2em 0 2em;
+}
+.NavBarRightSide{
+    display: flex;
+    flex-direction:row;
+    margin: 0 2em 0 2em;
 }
 .navButton{
 color: #FFFFFF ;
 background-color: transparent;
-padding-left: 5%;
-
+border-style: none;
+}
+.navButton:hover{
+    cursor: pointer;
+    color: #007bff ;
+}
+.navButton:active{
+    color: #FFFFFF ;
 }

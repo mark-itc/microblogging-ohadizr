@@ -19,22 +19,25 @@ export default function Profile() {
   return (
     <>
       <div className="profileContainer">
-        <h1 className="profileTest">profile</h1>
-        <form>
+        <h1 className="profileTitle">Profile</h1>
+        <h5 className="titleDetails">User Name</h5>
+        <form className="user-pick-form">
           <input
             id="user"
             name="user"
-            placeholder="userName"
+            autoFocus
+            placeholder="write your user name here"
             onChange={handleTextChange}
             value={text}
           ></input>
           <button
+          className="pickAUserButton"
             onClick={async (e) => {
               e.preventDefault();
               setUser(text);
             }}
           >
-            pickUser
+            Save
           </button>
         </form>
       </div>

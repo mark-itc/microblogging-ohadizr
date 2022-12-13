@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 // import { apiGetData } from "../Test_React_Firebase/src/globalFunctions/api";
-import {apiGetData} from './globalFunctions/api'
+import {apiGetData} from './globalFunctions/GetApiData'
+
 const Context = createContext();
 
 function TweetContextProvider({ children }) {
@@ -22,12 +23,12 @@ function TweetContextProvider({ children }) {
     }
   };
   useEffect(() => {
-    fetchFromAPI();
+    // fetchFromAPI();
   }, [globalUser]);
 
   setInterval(() => {
-    fetchFromAPI()
-  }, 100000);
+    // fetchFromAPI()
+  }, 10000000);
 
   return (
     <Context.Provider

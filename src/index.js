@@ -4,18 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {TweetContextProvider,Context} from './Context'
-import { AuthContextProvider } from './AuthContext';
+import {TweetContextProvider} from './Context'
+import { FirebaseConfigContextProvider } from './FirebaseConfigContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <BrowserRouter>
-  <AuthContextProvider>
+  <FirebaseConfigContextProvider>
       <TweetContextProvider>
       <App />
       </TweetContextProvider>
-      </AuthContextProvider>
+      </FirebaseConfigContextProvider>
   </BrowserRouter>
 
 );

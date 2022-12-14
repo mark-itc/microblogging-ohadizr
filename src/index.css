@@ -1,3 +1,15 @@
+/* pallet */
+/* Color Theme Swatches in Hex */
+.DarkBlue{ color: #1E2640; }
+.BlueGrey { color: #2C3B59; }
+.LightGrey { color: #8596A6; }
+.rust{ color: #a94317; }
+.peach { color: hsl(11, 43%, 56%); }
+.white{color: #fff}
+
+
+
+
 *{
   font-family: Roboto;
   font-weight: 400;
@@ -16,5 +28,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.inputStandard{
+  border: 2px solid #2C3B59;
+  color: #2C3B59;
+  width: 20rem;
+  height: 2rem;
+  border-radius: 4%;
+}
+button{
+  cursor:pointer;
+}
+.buttonStandard{
+  background-color: #2C3B59;
+  border: 1px solid #8596A6;
+  color: #fff; 
+  width: 8rem;
+  overflow:visible;
+  border-radius: 6%;
+  padding: .5em;
+  margin:  0.3rem  0.5rem 0.1rem 0.1rem;
 
+}
+.buttonStandard:hover{
+  background-color: #2C3B59;
+  border-color: #666;
+  color: #fff;
+}
+
+.buttonStandard:active{
+  background-color: #666;
+  border-color: #8596A6;
+  color: #fff;
+}
 

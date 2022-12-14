@@ -10,6 +10,9 @@
   padding: 5px;
   height: 14em;
 }
+.profileContainer h5{
+  color: #FFFFFF;
+}
 .profileTitle{
     color: #FFFFFF;
     margin-top: 0%;

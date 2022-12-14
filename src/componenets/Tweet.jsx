@@ -1,4 +1,3 @@
-// import '../components/Tweet.css'
 import '../componenets/Tweet.css'
 function TweetCard(props) {
     const { userName, content, date} = props;

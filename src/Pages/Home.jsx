@@ -4,26 +4,32 @@ import { getCurrentTime } from "../globalFunctions/timeFuncs";
 import TweetCard from '../componenets/Tweet'
 import { PostDataToApi } from "../globalFunctions/PostDataToApi";
 import { Context } from "../Context";
+import { FirebaseConfigContext } from "../FirebaseConfigContext";
 
 function Home() {
-  const { globalUser, setGlobalUser, globalTweetList, setGlobalTweetList } =
+  const {authenticatedUser}= useContext(FirebaseConfigContext)
+  const { userAuthTweet, setUserAuthTweet, globalTweetList, setGlobalTweetList } =
     useContext(Context);
-  let user = globalUser;
   const [tweet, setTweet] = useState("");
   const [newTweet, setNewTweet] = useState([]);
 
   const handleTextChange = (event) => {
     setTweet(event.target.value);
+    console.log(tweet);
   };
 
   useEffect(() => {
     if (newTweet != "") {
+      console.log("works");
       setGlobalTweetList((current) => [...current, newTweet]);
       PostDataToApi(newTweet);
+  
     }
-  }, [newTweet]);
+  }, [authenticatedUser,globalTweetList]);
+
 
   function createTweetHtml() {
+        console.log(globalTweetList);
     return globalTweetList.map((singleTweet, index) => {
       return (
         <TweetCard
@@ -61,8 +67,9 @@ function Home() {
               className="tweet-button"
               onClick={async (e) => {
                 e.preventDefault();
+
                 setNewTweet({
-                  userName: user,
+                  userName: authenticatedUser.displayName,
                   content: tweet,
                   date: getCurrentTime(),
                 });

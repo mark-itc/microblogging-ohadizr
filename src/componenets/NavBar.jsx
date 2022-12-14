@@ -1,14 +1,37 @@
 import React from "react";
-import '../componenets/NavBar.css'
+import "../componenets/NavBar.css";
 import { useNavigate } from "react-router-dom";
-
+import { FirebaseConfigContext } from "../FirebaseConfigContext";
+import { useContext,useEffect} from "react";
+import {
+  signOut,
+  onAuthStateChanged,
+} from "@firebase/auth";
 export default function NavBar() {
   const navigate = useNavigate();
+  const { auth, authenticatedUser, setAuthenticatedUser } = useContext(
+    FirebaseConfigContext
+  );
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      console.log("currentUser1",auth.currentUser,"user",authenticatedUser);
+    } catch (error) {
+      console.log(error.message);
+      return
+    }
+  };
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setAuthenticatedUser(currentUser);
+    });
+  }, [authenticatedUser])
 
   return (
     <>
       <nav className="NavBarContainer">
-      <div className="NavBarLeftSide">
+        <div className="NavBarLeftSide">
           <button
             onClick={() => {
               navigate("/");
@@ -17,35 +40,46 @@ export default function NavBar() {
           >
             Home
           </button>
-          <button
-            onClick={() => {
-              navigate("/Profile");
-            }}
-            className="navButton"
-          >
-            Profile
-          </button>
           </div>
-          <div className="NavBarRightSide">
-          <button
-            onClick={() => {
-              navigate("/SignUp");
-            }}
-            className="navButton"
-          >
-            SignUp
-          </button>
-          <button
-            onClick={() => {
-              navigate("/SignIn");
-            }}
-            className="navButton"
-          >
-            SignIn
-          </button>
-
-
+          <div className="NavBarLeftSide">
+            {authenticatedUser ? (
+  
+              <>
+              <button
+                onClick={() => {
+                  navigate("/Profile");
+                }}
+                className="navButton"
+              >
+                Profile
+              </button>
+              <button onClick={()=>{
+                  logout()
+                  setAuthenticatedUser({})
+                  }}>signOut</button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    navigate("/SignUp");
+                  }}
+                  className="navButton"
+                >
+                  Sign Up
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/SignIn");
+                  }}
+                  className="navButton"
+                >
+                  Sign In
+                </button>
+              </>
+            )}
           </div>
+
       </nav>
     </>
   );

@@ -17,8 +17,10 @@ const {authenticatedUser} = useContext(FirebaseConfigContext)
 
   return (
     <>
+    {/* <Route path='*' exact={true} element={<Home />} /> */}
       <NavBar />
       <Routes>
+      
       {!authenticatedUser? <Route path="/" element={<Wellcome />} />
       :
       <>        
@@ -26,8 +28,6 @@ const {authenticatedUser} = useContext(FirebaseConfigContext)
         <Route path="/Profile" element={<Profile />} />
         </>
       }
-
-
         <Route path="/SignIn" element={<SignIn />} /> 
         <Route path="/SignUp" element={<SignUp />} />
       </Routes>

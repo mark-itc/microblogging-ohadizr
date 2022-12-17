@@ -5,8 +5,8 @@ export async function PostDataToApi(tweetObject) {
     "date": {
       "timestampValue": tweetObject.date
     },
-    "userName": {
-      "stringValue": tweetObject.userName
+    "uid": {
+      "stringValue": tweetObject.uid
     },
     "content": {
       "stringValue": tweetObject.content
@@ -18,7 +18,7 @@ export async function PostDataToApi(tweetObject) {
         "fields": newTweet
       })
     });
-
+    console.log(response);
     const data = await response.json();
     console.log(data);
 

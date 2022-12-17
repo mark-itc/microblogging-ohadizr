@@ -25,10 +25,6 @@ const FirebaseConfigContext = createContext();
 function FirebaseConfigContextProvider({ children }) {
   const [authenticatedUser, setAuthenticatedUser] = useState({});
   const auth = getAuth(fireBaseApp);
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   setAuthenticatedUser(currentUser);
-  // });
-  // console.log(auth);
 
   return (
     <FirebaseConfigContext.Provider

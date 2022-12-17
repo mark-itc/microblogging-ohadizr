@@ -9,16 +9,15 @@ export async function apiGetData() {
 
 
         const results=await respone.json()
-
         // const resultsFireStore=results.documents
         // const resultsJsonBin=results.record.documents
-
         const mapedResults= results.documents.map((i)=>{
           let id = i.name.substring(i.name.lastIndexOf('/') + 1)
-          let userName= i.fields.userName.stringValue
+          let uid= i.fields.uid.stringValue
           let content= i.fields.content.stringValue
           let date =i.fields.date.timestampValue
-          let tweetObj = {userName:userName,
+          let tweetObj = {
+            uid:uid,
             content:content,
             date:date,
             id:id

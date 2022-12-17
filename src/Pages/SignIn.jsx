@@ -7,6 +7,7 @@ import {
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
 import "./SignInOut.css";
 import { GoogleAuthProvider } from "firebase/auth";
+import  GoogleIcon from './art/google.png'
 export default function SignIn() {
   const { auth } = useContext(
     FirebaseConfigContext
@@ -71,14 +72,17 @@ export default function SignIn() {
             setloginPassword(e.target.value);
           }}
         ></input>
+       <div className="submitOptions">   
         <button 
         className="buttonStandard"
         onClick={login}>Login User</button>
-                  <button 
+         <button 
           onClick={signInWithGoogle}
-          className="buttonStandard" type="submit">
-            Login with google
+           type="submit"
+           className="iconButton">
+          <img className="googleIcon" src={GoogleIcon}/>
           </button>
+          </div>
         <div>
           <h4>{error ? error : null}</h4>
         </div>

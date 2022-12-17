@@ -5,36 +5,37 @@ import TweetCard from '../componenets/Tweet'
 import { PostDataToApi } from "../globalFunctions/PostDataToApi";
 import { Context } from "../Context";
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
-
+import {getUserListFromApi} from '../globalFunctions/getUserListFromApi'
 function Home() {
+
   const {authenticatedUser}= useContext(FirebaseConfigContext)
-  const { userAuthTweet, setUserAuthTweet, globalTweetList, setGlobalTweetList } =
+  const { userListuserAuthTweet, setUserAuthTweet, globalTweetList, setGlobalTweetList } =
     useContext(Context);
   const [tweet, setTweet] = useState("");
   const [newTweet, setNewTweet] = useState([]);
-
+ 
   const handleTextChange = (event) => {
     setTweet(event.target.value);
-    console.log(tweet);
+
   };
+//  useEffect(() => {
 
-  useEffect(() => {
-    if (newTweet != "") {
-      console.log("works");
-      setGlobalTweetList((current) => [...current, newTweet]);
-      PostDataToApi(newTweet);
-  
-    }
-  }, [authenticatedUser,globalTweetList]);
+//  }, [authenticatedUser])
+ 
+function onFormSubmit(e) {
+  e.preventDefault()
+  setGlobalTweetList((current) => [...current, newTweet]);
+  PostDataToApi(newTweet)
+
+}
 
 
-  function createTweetHtml() {
-        console.log(globalTweetList);
+const createTweetHtml=()=> {
     return globalTweetList.map((singleTweet, index) => {
       return (
         <TweetCard
           key={index}
-          userName={singleTweet.userName}
+          uid={singleTweet.uid}
           date={singleTweet.date}
           content={singleTweet.content}
         />
@@ -42,11 +43,16 @@ function Home() {
     });
   }
 
+
+
+
   return (
     <>
       <div className="home-container">
         <div className="create-tweet">
-          <form className="tweet-form">
+          <form className="tweet-form"
+          onSubmit={onFormSubmit}
+          >
             <textarea
               id="tweet"
               name="tweet"
@@ -65,11 +71,12 @@ function Home() {
             )}
             <button
               className="tweet-button"
+              type='submit'
               onClick={async (e) => {
-                e.preventDefault();
-
+    
+                console.log(authenticatedUser)
                 setNewTweet({
-                  userName: authenticatedUser.displayName,
+                  uid: authenticatedUser.uid,
                   content: tweet,
                   date: getCurrentTime(),
                 });

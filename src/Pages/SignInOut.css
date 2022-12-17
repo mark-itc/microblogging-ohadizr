@@ -1,5 +1,5 @@
 .signInContainer{
-    position: relative;
+    position: absolute;
     color: white;
     width: 50%;
     padding: 0 25% 0 25%;
@@ -19,4 +19,27 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+.submitOptions{
+    display: flex;
+}    
+
+.iconButton{
+    display: flex;
+    /* text-align: left; */
+    /* justify-content:left; */
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    background-color: transparent; 
+    border: none;   
+    width: 5em;  
+    vertical-align: middle;
+    
+}
+.googleIcon{
+    padding: 1em;
+    width: 2em;
+    height: 2em;
 }

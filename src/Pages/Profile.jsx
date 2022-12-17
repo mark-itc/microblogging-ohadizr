@@ -2,12 +2,11 @@ import { useState, useEffect, useContext } from "react";
 import "../Pages/Profile.css";
 import { Context } from "../Context";
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
-import TweetCard from '../componenets/Tweet'
+// import TweetCard from '../componenets/Tweet'
 export default function Profile() {
   const { userAuthTweet } = useContext(Context);
   const { authenticatedUser } = useContext(FirebaseConfigContext);
  
-  console.log(userAuthTweet);
   return (
     <>
       <div className="profileContainer">

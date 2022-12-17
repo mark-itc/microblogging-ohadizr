@@ -4,6 +4,10 @@ import { createUserWithEmailAndPassword, signInWithPopup } from "@firebase/auth"
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
 import "./SignInOut.css";
 import { GoogleAuthProvider } from "firebase/auth";
+import  GoogleIcon from './art/google.png'
+import postNewUserToStorage from '../globalFunctions/postNewUserToStorage'
+
+
 
 
 export default function SingUp() {
@@ -18,7 +22,7 @@ export default function SingUp() {
   const [error, setError] = useState("");
 
   const provider = new GoogleAuthProvider();
-  console.log(provider);
+
   const register = async () => {
     try {
       const authenticatedUser = await createUserWithEmailAndPassword(
@@ -26,21 +30,23 @@ export default function SingUp() {
         registerEmail,
         registerPassWord
       );
-
+      localStorage.setItem("name",displayName)
+      localStorage.setItem("email",registerEmail)
+      // localStorage.setItem("profilePic",profilePic)
       setError("");
-  
+      
     } catch (error) {
       setError(error.message);
     }
   };
 
-async function updateNameAndPhoto() {
-    await authenticatedUser.updateProfile({
-    displayName: displayName,
-    photoURL:photoURL
-  });
+// async function addUserToStorage() {
+//     await authenticatedUser.updateProfile({
+//     displayName: displayName,
+//     photoURL:photoURL
+//   });
   
-}
+// }
   
   
   
@@ -52,7 +58,6 @@ async function updateNameAndPhoto() {
       : setError(
           "ERROR: Your password and confirmation password do not match."
         );
-      updateNameAndPhoto() 
   }
   const signInWithGoogle =async()=>{
     try {
@@ -86,7 +91,17 @@ async function updateNameAndPhoto() {
               setDisplayName(e.target.value);
             }}
           />
-          <label>set Profile Picture</label>
+          <label>Profile Picture</label>
+          <input
+            className="inputStandard"
+            type="file"
+            placeholder="Enter Profile Picture URL"
+            onChange={(e) => {
+              e.preventDefault();
+              setPhotoURL(e.target.value);
+            }}
+          />
+          {/* <label>set Profile Picture</label>
           <input
             className="inputStandard"
             type="image"
@@ -95,7 +110,7 @@ async function updateNameAndPhoto() {
               e.preventDefault();
               setDisplayName(e.target.value);
             }}
-          />
+          /> */}
           <label>Enter Email</label>
           <input
             className="inputStandard"
@@ -129,14 +144,17 @@ async function updateNameAndPhoto() {
               setConfirmationPassWordPassword(e.target.value);
             }}
           />
+            <div className="submitOptions">         
           <button className="buttonStandard" type="submit">
             Create User
           </button>
           <button 
           onClick={signInWithGoogle}
-          className="buttonStandard" type="submit">
-            sign with google
+           type="submit"
+           className="iconButton">
+          <img className="googleIcon" src={GoogleIcon}/>
           </button>
+        </div> 
           <div>
             <h4>{error ? error : null}</h4>
           </div>

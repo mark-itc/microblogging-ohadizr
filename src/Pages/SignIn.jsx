@@ -2,13 +2,16 @@ import React from "react";
 import { useState, useContext } from "react";
 import {
   signInWithEmailAndPassword,
-  signInWithPopup
+  signInWithPopup,
+
 } from "@firebase/auth";
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
 import "./SignInOut.css";
 import { GoogleAuthProvider } from "firebase/auth";
 import  GoogleIcon from './art/google.png'
+import { useNavigate } from "react-router-dom";
 export default function SignIn() {
+  const navigate = useNavigate();
   const { auth } = useContext(
     FirebaseConfigContext
   );
@@ -28,6 +31,7 @@ export default function SignIn() {
       console.log(error.message);
       setError(error.message);
     }
+    navigate("/");
   };
   const provider = new GoogleAuthProvider();
   const signInWithGoogle =async()=>{
@@ -36,10 +40,12 @@ export default function SignIn() {
         const name = result.user.displayName
         const email = result.user.email
         const profilePic = result.user.photoURL
-        localStorage.setItem("name",name)
+        localStorage.setItem("displayName",name)
         localStorage.setItem("email",email)
         localStorage.setItem("profilePic",profilePic)
-      })
+      }
+      )
+
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +53,7 @@ export default function SignIn() {
 
   }
   return (
-    <div className="signInContainer">
+    // <div className="signInContainer">
       <div className="logInDiv">
         <h2>Login User</h2>
         <label>Enter Email</label>
@@ -77,7 +83,10 @@ export default function SignIn() {
         className="buttonStandard"
         onClick={login}>Login User</button>
          <button 
-          onClick={signInWithGoogle}
+          onClick={()=>{
+          signInWithGoogle()
+          navigate("/")
+          }}
            type="submit"
            className="iconButton">
           <img className="googleIcon" src={GoogleIcon}/>
@@ -87,6 +96,6 @@ export default function SignIn() {
           <h4>{error ? error : null}</h4>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }

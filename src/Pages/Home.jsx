@@ -1,97 +1,53 @@
+import React from 'react';
 import '../Pages/Home.css'
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { getCurrentTime } from "../globalFunctions/timeFuncs";
-import TweetCard from '../componenets/Tweet'
+// import TweetCard from '../componenets/FeedHomeComponenets/Tweet'
 import { PostDataToApi } from "../globalFunctions/PostDataToApi";
 import { Context } from "../Context";
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
-import {getUserListFromApi} from '../globalFunctions/getUserListFromApi'
+import Loading from '../componenets/LoginupComponents/Loading';
+import TweetsContainer from '../componenets/FeedHomeComponenets/TweetsContainer';
+import CreateTweetContainer from '../componenets/FeedHomeComponenets/CreateTweetContainer';
 function Home() {
 
-  const {authenticatedUser}= useContext(FirebaseConfigContext)
-  const { userListuserAuthTweet, setUserAuthTweet, globalTweetList, setGlobalTweetList } =
+  const {authenticatedUser,auth}= useContext(FirebaseConfigContext)
+  const {userList,globalTweetList} =
     useContext(Context);
-  const [tweet, setTweet] = useState("");
-  const [newTweet, setNewTweet] = useState([]);
- 
-  const handleTextChange = (event) => {
-    setTweet(event.target.value);
+  const findUser = (users, id) => users.find(user => user.uid === id)
+  const user = findUser(userList, authenticatedUser.uid)
 
-  };
-//  useEffect(() => {
+  const [pages, setPages] = useState(0)
+useEffect(() => {
+  
+}, [authenticatedUser])
+const pagesMax=Math.ceil(globalTweetList.length/10)
 
-//  }, [authenticatedUser])
- 
-function onFormSubmit(e) {
-  e.preventDefault()
-  setGlobalTweetList((current) => [...current, newTweet]);
-  PostDataToApi(newTweet)
-
-}
-
-
-const createTweetHtml=()=> {
-    return globalTweetList.map((singleTweet, index) => {
-      return (
-        <TweetCard
-          key={index}
-          uid={singleTweet.uid}
-          date={singleTweet.date}
-          content={singleTweet.content}
-        />
-      );
-    });
+const pageButtons=()=>{   
+  const pageButtonsArray=[]
+  for(let i=0;i<pagesMax;i++){
+    pageButtonsArray.push(<button onClick={()=>setPages(i)}>{i}</button>)
   }
-
-
-
-
+  return pageButtonsArray
+}
   return (
+    !user&&authenticatedUser.uid?<Loading/>:
     <>
-      <div className="home-container">
-        <div className="create-tweet">
-          <form className="tweet-form"
-          onSubmit={onFormSubmit}
-          >
-            <textarea
-              id="tweet"
-              name="tweet"
-              className="tweet-textarea"
-              placeholder="What you have in mind..."
-              maxLength="140"
-              value={tweet}
-              onChange={handleTextChange}
-            />
-            {tweet.length < 139 ? (
-              <h5></h5>
-            ) : (
-              <h5 className="tweetCapError">
-                The tweet can't contain more then 140 chars.
-              </h5>
-            )}
-            <button
-              className="tweet-button"
-              type='submit'
-              onClick={async (e) => {
-    
-                console.log(authenticatedUser)
-                setNewTweet({
-                  uid: authenticatedUser.uid,
-                  content: tweet,
-                  date: getCurrentTime(),
-                });
-              }}
-            >
-              Tweet
-            </button>
-          </form>
-        </div>
-        <div className="tweet-list">
-          {globalTweetList.length > 0 ? createTweetHtml() : null}
-        </div>
-      </div>
+    <div className="home-container">
+    <CreateTweetContainer/>
+      <TweetsContainer
+        pages={pages}
+      />
+ 
+    <div className='moreOrLess'>
+      <button className='buttonStandard' onClick={() => setPages(pages - 1)}>Less</button>
+      <button className='buttonStandard' onClick={() => setPages(pages + 1)}>More</button>
+      <button className='buttonStandard' onClick={() => setPages(0)}>Reset</button>
+      {/* <div className='buttonStandard'> {pageButtons()}</div> */}
+
+    </div>
+    </div>
     </>
   );
 }
-
 export default Home;

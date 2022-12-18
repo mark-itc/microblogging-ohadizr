@@ -1,16 +1,18 @@
 import React from "react";
-import { useState, useContext,useEffect } from "react";
+import { useState, useContext} from "react";
 import { createUserWithEmailAndPassword, signInWithPopup } from "@firebase/auth";
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
 import "./SignInOut.css";
 import { GoogleAuthProvider } from "firebase/auth";
 import  GoogleIcon from './art/google.png'
-import postNewUserToStorage from '../globalFunctions/postNewUserToStorage'
 
 
 
 
 export default function SingUp() {
+  let url=window.location.href
+  const lastPartOfUrl= url.substring(url.lastIndexOf('/') + 1)
+ 
   const { auth,authenticatedUser  } = useContext(
     FirebaseConfigContext
   );
@@ -30,7 +32,7 @@ export default function SingUp() {
         registerEmail,
         registerPassWord
       );
-      localStorage.setItem("name",displayName)
+      localStorage.setItem("displayName",displayName)
       localStorage.setItem("email",registerEmail)
       // localStorage.setItem("profilePic",profilePic)
       setError("");
@@ -40,19 +42,8 @@ export default function SingUp() {
     }
   };
 
-// async function addUserToStorage() {
-//     await authenticatedUser.updateProfile({
-//     displayName: displayName,
-//     photoURL:photoURL
-//   });
-  
-// }
-  
-  
-  
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submit");
     registerPassWord === confirmationPassWord
       ? register()
       : setError(
@@ -72,12 +63,14 @@ export default function SingUp() {
     } catch (error) {
       console.log(error);
     }
+
   }
 
 
   return (
-    <div className="signInContainer">
-      <div className="registerDiv">
+    <>
+    {/* <div className={lastPartOfUrl==="SignUp"?"signInContainer":null}> */}
+      {/* <div className="registerDiv"> */}
         <h2>Register User</h2>
         <form className="registerDiv" onSubmit={handleSubmit}>
         <label>User Name</label>
@@ -101,7 +94,7 @@ export default function SingUp() {
               setPhotoURL(e.target.value);
             }}
           />
-          {/* <label>set Profile Picture</label>
+          <label>set Profile Picture</label>
           <input
             className="inputStandard"
             type="image"
@@ -110,7 +103,7 @@ export default function SingUp() {
               e.preventDefault();
               setDisplayName(e.target.value);
             }}
-          /> */}
+          />
           <label>Enter Email</label>
           <input
             className="inputStandard"
@@ -159,7 +152,8 @@ export default function SingUp() {
             <h4>{error ? error : null}</h4>
           </div>
         </form>
-      </div>
-    </div>
+      {/* </div> */}
+    {/* </div> */}
+    </>
   );
 }

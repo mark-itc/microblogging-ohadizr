@@ -1,8 +1,9 @@
 import * as firebase from "firebase/app";
 import { getAuth } from "firebase/auth";
-
 import { useState } from "react";
 import { createContext } from "react";
+import { getStorage } from "firebase/storage";
+// import { auth } from './getAuthFirebase'
 ;
 
 const fireBaseApp = firebase.initializeApp({
@@ -18,17 +19,16 @@ const fireBaseApp = firebase.initializeApp({
 });
 export default fireBaseApp;
 
-
-
 const FirebaseConfigContext = createContext();
+const storage = getStorage(fireBaseApp);
 
+const auth = getAuth(fireBaseApp);
 function FirebaseConfigContextProvider({ children }) {
   const [authenticatedUser, setAuthenticatedUser] = useState({});
-  const auth = getAuth(fireBaseApp);
 
   return (
     <FirebaseConfigContext.Provider
-      value={{ authenticatedUser, setAuthenticatedUser,auth }}
+      value={{ authenticatedUser, setAuthenticatedUser,auth,storage }}
     >
       {children}
     </FirebaseConfigContext.Provider>

@@ -2,7 +2,7 @@ import React from "react";
 import "../componenets/NavBar.css";
 import { useNavigate } from "react-router-dom";
 import { FirebaseConfigContext } from "../FirebaseConfigContext";
-import { useContext,useEffect} from "react";
+import { useContext} from "react";
 import {
   signOut,
   onAuthStateChanged,
@@ -22,11 +22,10 @@ export default function NavBar() {
       return
     }
   };
-  useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setAuthenticatedUser(currentUser);
     });
-  }, [authenticatedUser])
+
 
   return (
     <>

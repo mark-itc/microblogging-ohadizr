@@ -1,5 +1,5 @@
 import React from 'react'
-import { useReducer } from 'react';
+import { useReducer,useEffect } from 'react';
 import './Wellcome.css'
 import SignIn from './SignIn'
 import SingUp from './SignUp';
@@ -9,25 +9,57 @@ export const ACTION = {
   SIGNIN_WELLCOME: 'signin_wellcome',
   REGISTER_WELLCOME: 'register_wellcome'
 };
-// useLayoutEffect(() => {
-//   first
 
-// }, [third])
 function reducer(wellcomeState, action) {
   switch (action.type) {
     case ACTION.NOFORM_WELLCOME:
-      return null;
+      return <></>;
     case ACTION.SIGNIN_WELLCOME:
           return <SignIn/>
       case ACTION.REGISTER_WELLCOME:
           return <SingUp/>
       default:
-        return null;
+        return <></>;
   }
 }
 
 export default function Wellcome() {
   const [wellcomeState, dispatch] = useReducer(reducer, "noform_wellcome");
+  let url=window.location.href
+  const lastPartOfUrl= url.substring(url.lastIndexOf('/') + 1)
+  console.log(lastPartOfUrl);
+useEffect(() => {
+  if (lastPartOfUrl=='SignIn'){
+    dispatch({type: ACTION.SIGNIN_WELLCOME})
+    console.log('SignIn');
+  }
+  if (lastPartOfUrl=='SignUp'){
+    dispatch({type: ACTION.REGISTER_WELLCOME})
+    console.log('SignIn');
+  
+  }
+  else{
+    dispatch({type: ACTION.NOFORM_WELLCOME})   
+    console.log('/');
+  }
+
+
+}, [lastPartOfUrl])
+
+useEffect(() => {
+
+  // if (lastPartOfUrl=='SignUp'){
+  //   dispatch({type: ACTION.REGISTER_WELLCOME})
+  //   console.log('SingUp');
+  // }
+
+  // else{
+  //   dispatch({type: ACTION.NOFORM_WELLCOME})   
+  //   console.log('/');
+  // }
+
+
+}, [lastPartOfUrl])
   return (
 <>
     <div className='signInWelcomeContainer'
@@ -56,7 +88,9 @@ export default function Wellcome() {
     onClick={(e)=>{
       e.stopPropagation()}}
     >
-    {wellcomeState }
+    <div className="signInContainerWelcome">
+    {wellcomeState}
+    </div>
     </div>
 </div>
 

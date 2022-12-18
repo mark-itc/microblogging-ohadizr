@@ -13,7 +13,9 @@ export async function PostDataToApi(tweetObject) {
     }
   }
     const response = await fetch('https://firestore.googleapis.com/v1/projects/microblogapp-9299c/databases/(default)/documents/tweets', {
-      method: 'POST',
+    // const response=await fetch('https://api.jsonbin.io/v3/b/639df97c01a72b59f23311f5', {  
+    // method: 'PUT', //JSON bin
+    method: 'POST',
       body: JSON.stringify({
         "fields": newTweet
       })

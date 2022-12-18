@@ -10,7 +10,7 @@ display: flex;
 align-items: center;
 }
 /* +++++form+++++ */
-.create-tweet{
+/* .create-tweet{
     position: relative;
     margin: auto;
     width: 600px;
@@ -18,9 +18,9 @@ align-items: center;
     border: 3px solid black;
     padding: 10px;
     margin: 5px;
-}
+} */
 
-.tweet-textarea{
+/* .tweet-textarea{
 width: 564px;
 height: 163px;
 padding: 12px 20px;
@@ -39,7 +39,7 @@ width: 68px;
 right:10px;
 bottom: 20px;
 color: #ffffff;
-}
+} */
 
 /* +++++List+++++ */
 .tweet-list{
@@ -52,5 +52,17 @@ flex-direction:column-reverse;
     color: #721C24;
     background-color: #F5C6CB;
     
+}
+
+.home-Loading-Container{
+    position: absolute;
+    top: 10em;
+    align-self: center;
+    height: 95%;
+    width: 100vw;
+    background-color: #15202B;
+    flex-direction: column;
+    display: flex;    
+    align-items: center;    
 }
 
